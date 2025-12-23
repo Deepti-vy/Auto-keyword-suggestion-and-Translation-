@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Smart AutoCorrect & Translator 🌐</title>
+<style>
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #a8c0ff, #3f2b96);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.2);
+  text-align: center;
+  width: 80%;
+  max-width: 600px;
+}
+h2 { color: #3f2b96; margin-bottom: 20px; }
+input {
+  width: 70%; padding: 10px;
+  border-radius: 8px; border: 1px solid #ccc;
+  font-size: 16px;
+}
+button {
+  padding: 10px 20px;
+  background: #3f2b96; color: white;
+  border: none; border-radius: 8px;
+  cursor: pointer; margin-left: 5px;
+}
+table {
+  margin-top: 20px; width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+th {
+  background: #3f2b96; color: white;
+}
+tr:hover { background: #f1f1f1; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>Keyword  AutoSuggest  & Translator 🌐</h2>
+  <form method="POST">
+    <input type="text" name="word" placeholder="Enter a word..." required>
+    <button type="submit">Generate</button>
+  </form>
+  {% if suggestions %}
+  <table>
+    <tr>
+      <th>Word</th>
+      <th>Probability (%)</th>
+      <th>Hindi</th>
+      <th>Kannada</th>
+    </tr>
+    {% for s in suggestions %}
+    <tr>
+      <td>{{ s.word }}</td>
+      <td>{{ s.prob }}</td>
+      <td>{{ s.hindi }}</td>
+      <td>{{ s.kannada }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+</div>
+</body>
+</html>
